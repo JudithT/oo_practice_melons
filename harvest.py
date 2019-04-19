@@ -65,21 +65,31 @@ def make_melon_types():
 
 
 
-def print_pairing_info(melon_types):
-    """Prints information about each melon type's pairings."""
+# def print_pairing_info(melon_types):
+#     """Prints information about each melon type's pairings."""
 
-    # Fill in the rest
-    for melon in melon_types:
-        print(melon.pairings)
+#     # Fill in the rest
+#     for melon in melon_types:
 
-melonT = make_melon_types()
+#         print(f"{melon.name} pairs with")
+#         for pairing in melon.pairings:
+#           print(f"-{pairing}") 
 
-print(print_pairing_info(melonT))
+# melonT = make_melon_types()
+# print_pairing_info(melonT)
 
 def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
     # Fill in the rest
+    
+    mon_dict = {}
+    for melon in melon_types:
+         mon_dict[melon.code] = melon
+
+    return mon_dict
+melonT = make_melon_types()
+print (make_melon_type_lookup(melonT))
 
 ############
 # Part 2   #
@@ -90,6 +100,30 @@ class Melon(object):
 
     # Fill in the rest
     # Needs __init__ and is_sellable methods
+    """Initialize a melon."""
+    def __init__(self, melon_type, shape_rating, color_rating, number_of_harvest, name):
+
+    
+        self.type = melon_type
+        self.rating = shape_rating
+        self.number_of_harvest = number_of_harvest
+        self.name = name
+
+
+
+    def is_sellable(self):
+        if (self.rating > 5) and  (self.color_rating > 5) and (self.number_of_harvest != 3):
+            return True
+
+        else:
+            return False
+
+
+melon1 = Melon('yw',8,7,2,'Sheila')
+
+print(melon1)
+t = melon1.is_sellable
+print('t is', t)
 
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
